@@ -1,0 +1,72 @@
+/**
+ * Sample leads data to populate the CRM if no local storage data exists.
+ * Features realistic Indian names, companies, and varied pipeline statuses.
+ */
+export const sampleLeads = [
+  {
+    id: 'lead-001',
+    name: 'Aarav Patel',
+    company: 'Fintech Solutions India',
+    email: 'aarav.p@fintechsolutions.in',
+    phone: '+91 98765 43210',
+    status: 'New',
+    source: 'Website',
+    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 5).toISOString(),
+  },
+  {
+    id: 'lead-002',
+    name: 'Priya Sharma',
+    company: 'CloudWorks Tech',
+    email: 'priya.sharma@cloudworks.com',
+    phone: '+91 87654 32109',
+    status: 'New',
+    source: 'LinkedIn',
+    createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 3).toISOString(),
+  },
+  {
+    id: 'lead-003',
+    name: 'Rohan Gupta',
+    company: 'NextGen Retail',
+    email: 'rohan.g@nextgenretail.in',
+    phone: '+91 76543 21098',
+    status: 'Contacted',
+    source: 'Cold Call',
+    createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 10).toISOString(),
+  },
+  {
+    id: 'lead-004',
+    name: 'Anjali Desai',
+    company: 'Healthcare Innovations',
+    email: 'anjali.d@healthinnovate.co.in',
+    phone: '+91 65432 10987',
+    status: 'Meeting Scheduled',
+    source: 'Referral',
+    createdAt: new Date(Date.now() - 86400000 * 7).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 7).toISOString(),
+  },
+  {
+    id: 'lead-005',
+    name: 'Vikram Singh',
+    company: 'BuildTech Infrastructure',
+    email: 'vikram.s@buildtech.com',
+    phone: '+91 54321 09876',
+    status: 'Won',
+    source: 'Email Campaign',
+    createdAt: new Date(Date.now() - 86400000 * 20).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 20).toISOString(),
+  },
+  {
+    id: 'lead-006',
+    name: 'Neha Verma',
+    company: 'EduSmart Platforms',
+    email: 'neha.v@edusmart.in',
+    phone: '+91 43210 98765',
+    status: 'Lost',
+    source: 'Other',
+    createdAt: new Date(Date.now() - 86400000 * 15).toISOString(),
+    dateAdded: new Date(Date.now() - 86400000 * 15).toISOString(),
+  }
+];
