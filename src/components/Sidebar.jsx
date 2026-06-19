@@ -1,35 +1,40 @@
-// Import React library
 import React from 'react';
-// Import NavLink from React Router DOM to enable active link styling
 import { NavLink } from 'react-router-dom';
+import { NAV_ITEMS } from '../constants/navigation';
 
-// Define the Sidebar component
 const Sidebar = () => {
-  // Define a helper function to dynamically apply Tailwind classes based on active state
   const linkClasses = ({ isActive }) =>
-    `block px-4 py-2 rounded mb-2 transition-colors duration-200 ${
-      isActive 
-        ? 'bg-blue-600 text-white' 
-        : 'text-gray-300 hover:bg-gray-800'
+    `flex items-center gap-3 px-3 py-2.5 min-h-11 rounded-xl mb-1 transition-colors duration-200 ${
+      isActive
+        ? 'bg-blue-600 text-white'
+        : 'text-slate-300 hover:bg-slate-800 dark:hover:bg-slate-800/80 hover:text-white'
     }`;
 
   return (
-    <div className="w-64 bg-gray-900 h-screen p-4 text-white flex flex-col">
-      <h2 className="text-2xl font-bold mb-8 text-center border-b border-gray-700 pb-4">
-        CRM Lite
-      </h2>
-      <nav className="flex-1">
-        <NavLink to="/" end className={linkClasses}>
-          Dashboard
-        </NavLink>
-        <NavLink to="/leads" className={linkClasses}>
-          Lead Management
-        </NavLink>
-        <NavLink to="/analytics" className={linkClasses}>
-          Analytics
-        </NavLink>
+    <aside className="hidden md:flex flex-col shrink-0 w-56 lg:w-72 bg-slate-900 dark:bg-slate-950 border-r border-slate-800 h-screen transition-colors duration-200">
+      <div className="p-4 lg:p-6 border-b border-slate-800">
+        <h2 className="text-xl lg:text-2xl font-bold text-white text-center lg:text-left">
+          CRM Lite
+        </h2>
+        <p className="hidden lg:block text-xs text-slate-400 mt-1">Startup Sales Platform</p>
+      </div>
+
+      <nav className="flex-1 p-3 lg:p-4 overflow-y-auto">
+        {NAV_ITEMS.map(({ to, label, sublabel, icon: Icon, end }) => (
+          <NavLink key={to} to={to} end={end} className={linkClasses}>
+            <Icon className="h-5 w-5 shrink-0" strokeWidth={2} />
+            <div className="min-w-0">
+              <span className="text-sm font-medium block truncate">{label}</span>
+              <span className="hidden lg:block text-xs text-slate-400 truncate">{sublabel}</span>
+            </div>
+          </NavLink>
+        ))}
       </nav>
-    </div>
+
+      <div className="hidden lg:block p-4 border-t border-slate-800">
+        <p className="text-xs text-slate-500">© 2026 CRM Lite</p>
+      </div>
+    </aside>
   );
 };
 

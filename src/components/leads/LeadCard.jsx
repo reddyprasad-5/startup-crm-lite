@@ -12,12 +12,12 @@ import StatusBadge from './StatusBadge';
  */
 const LeadCard = ({ lead, onEdit, onDelete }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 flex flex-col gap-3">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-5 flex flex-col gap-3 transition-colors">
       {/* Header: Name and Actions */}
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">{lead.name}</h3>
-          <div className="flex items-center gap-1 text-gray-500 mt-1">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{lead.name}</h3>
+          <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 mt-1">
             <Building2 className="w-4 h-4" />
             <span className="text-sm">{lead.company}</span>
           </div>
@@ -25,17 +25,17 @@ const LeadCard = ({ lead, onEdit, onDelete }) => {
         <div className="flex gap-2">
           <button 
             onClick={() => onEdit(lead)}
-            className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+            className="min-h-11 min-w-11 flex items-center justify-center text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
             aria-label="Edit lead"
           >
-            <Edit2 className="w-4 h-4" />
+            <Edit2 className="w-5 h-5" />
           </button>
           <button 
             onClick={() => onDelete(lead.id)}
-            className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+            className="min-h-11 min-w-11 flex items-center justify-center text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
             aria-label="Delete lead"
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash2 className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -46,15 +46,15 @@ const LeadCard = ({ lead, onEdit, onDelete }) => {
       </div>
 
       {/* Contact Info */}
-      <div className="flex flex-col gap-2 mt-2 pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Mail className="w-4 h-4 text-gray-400" />
-          <a href={`mailto:${lead.email}`} className="hover:text-blue-600 truncate">{lead.email}</a>
+      <div className="flex flex-col gap-2 mt-2 pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+          <Mail className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+          <a href={`mailto:${lead.email}`} className="hover:text-blue-600 dark:hover:text-blue-400 truncate">{lead.email}</a>
         </div>
         {lead.phone && (
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Phone className="w-4 h-4 text-gray-400" />
-            <a href={`tel:${lead.phone}`} className="hover:text-blue-600">{lead.phone}</a>
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+            <Phone className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+            <a href={`tel:${lead.phone}`} className="hover:text-blue-600 dark:hover:text-blue-400">{lead.phone}</a>
           </div>
         )}
       </div>
@@ -62,4 +62,4 @@ const LeadCard = ({ lead, onEdit, onDelete }) => {
   );
 };
 
-export default LeadCard;
+export default React.memo(LeadCard);

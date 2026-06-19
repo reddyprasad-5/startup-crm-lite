@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 /**
  * Custom hook to manage state synchronized with localStorage.
@@ -31,23 +31,25 @@ const useLocalStorage = (key, initialValue) => {
   });
 
   // Wrap the state setter to both update React state and localStorage simultaneously
-  const setValue = (value) => {
+  const setValue = useCallback((value) => {
     try {
-      // Support functional updates just like standard useState: e.g. setValue(prev => prev + 1)
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      
-      // 1. Update React state
-      setStoredValue(valueToStore);
-      
-      // 2. Persist to localStorage
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      }
+      // 1. Update React state using the functional form so it gets the true previous state
+      setStoredValue((prevStoredValue) => {
+        // Support functional updates just like standard useState: e.g. setValue(prev => prev + 1)
+        const valueToStore = value instanceof Function ? value(prevStoredValue) : value;
+        
+        // 2. Persist to localStorage
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        }
+        
+        return valueToStore;
+      });
     } catch (error) {
       // Gracefully handle QuotaExceededError or disabled cookies/storage
       console.warn(`Error setting localStorage key "${key}":`, error);
     }
-  };
+  }, [key]);
 
   return [storedValue, setValue];
 };

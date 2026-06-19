@@ -28,13 +28,13 @@ const FilterBar = ({ activeFilter, onFilterChange, leads }) => {
           <button
             key={filter}
             onClick={() => onFilterChange(filter)}
-            className={`whitespace-nowrap px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+            className={`whitespace-nowrap px-4 py-2.5 min-h-11 rounded-full text-sm font-medium transition-colors ${
               isActive
                 ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
             }`}
           >
-            {filter} <span className={`ml-1 ${isActive ? 'text-blue-200' : 'text-gray-400'}`}>({count})</span>
+            {filter} <span className={`ml-1 ${isActive ? 'text-blue-200' : 'text-gray-400 dark:text-gray-500'}`}>({count})</span>
           </button>
         );
       })}

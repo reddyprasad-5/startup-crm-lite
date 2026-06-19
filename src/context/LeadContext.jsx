@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useCallback, useMemo } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { sampleLeads } from '../data/sampleLeads';
 
@@ -33,7 +33,7 @@ export const LeadProvider = ({ children }) => {
    *
    * @param {Omit<Lead, 'id' | 'createdAt'>} leadData - Data for the new lead
    */
-  const addLead = (leadData) => {
+  const addLead = useCallback((leadData) => {
     const newLead = {
       ...leadData,
       id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
@@ -43,7 +43,7 @@ export const LeadProvider = ({ children }) => {
     };
     // setLeads automatically handles the localStorage sync!
     setLeads((prev) => [newLead, ...prev]);
-  };
+  }, [setLeads]);
 
   /**
    * Updates an existing lead in the state.
@@ -51,20 +51,20 @@ export const LeadProvider = ({ children }) => {
    * @param {string} id - ID of the lead to update
    * @param {Partial<Lead>} updatedData - Data to merge into the existing lead
    */
-  const updateLead = (id, updatedData) => {
+  const updateLead = useCallback((id, updatedData) => {
     setLeads((prev) => 
       prev.map((lead) => (lead.id === id ? { ...lead, ...updatedData } : lead))
     );
-  };
+  }, [setLeads]);
 
   /**
    * Deletes a lead from the state by ID.
    *
    * @param {string} id - ID of the lead to delete
    */
-  const deleteLead = (id) => {
+  const deleteLead = useCallback((id) => {
     setLeads((prev) => prev.filter((lead) => lead.id !== id));
-  };
+  }, [setLeads]);
 
   /**
    * Retrieves a specific lead by ID from the state.
@@ -72,18 +72,18 @@ export const LeadProvider = ({ children }) => {
    * @param {string} id - ID of the lead
    * @returns {Lead|undefined} The found lead or undefined
    */
-  const getLeadById = (id) => {
+  const getLeadById = useCallback((id) => {
     return leads.find((lead) => lead.id === id);
-  };
+  }, [leads]);
 
   // Provide state and functions to consumers
-  const value = {
+  const value = useMemo(() => ({
     leads,
     addLead,
     updateLead,
     deleteLead,
     getLeadById,
-  };
+  }), [leads, addLead, updateLead, deleteLead, getLeadById]);
 
   return (
     <LeadContext.Provider value={value}>

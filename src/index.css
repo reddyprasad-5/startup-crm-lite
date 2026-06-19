@@ -1,6 +1,9 @@
 /* 1. Import the core Tailwind CSS v4 styling rules, including utilities, base components, and variants */
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* 2. Configure custom font styles and default behaviors on the HTML document */
 html {
   /* Use system-ui and modern sans-serif fonts by default */

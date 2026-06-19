@@ -20,48 +20,48 @@ const KpiCards = ({ leads }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
         <div>
-          <p className="text-gray-500 text-sm font-medium mb-1">Total Leads</p>
-          <p className="text-3xl font-bold text-gray-900">{totalLeads}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Leads</p>
+          <p className="text-3xl font-bold text-gray-900 dark:text-white">{totalLeads}</p>
         </div>
-        <div className="p-3 bg-blue-50 rounded-full text-blue-600">
+        <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400">
           <Users className="w-6 h-6" />
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
         <div>
-          <p className="text-gray-500 text-sm font-medium mb-1">Win Rate</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Win Rate</p>
           <div className="flex items-baseline gap-2">
-            <p className="text-3xl font-bold text-gray-900">{winRate}%</p>
-            <p className="text-sm text-gray-500">({wonLeads} won)</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">{winRate}%</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">({wonLeads} won)</p>
           </div>
         </div>
-        <div className="p-3 bg-green-50 rounded-full text-green-600">
+        <div className="p-3 bg-green-50 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400">
           <Target className="w-6 h-6" />
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
         <div>
-          <p className="text-gray-500 text-sm font-medium mb-1">Active Pipeline</p>
-          <p className="text-3xl font-bold text-gray-900">{activeLeads}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Active Pipeline</p>
+          <p className="text-3xl font-bold text-gray-900 dark:text-white">{activeLeads}</p>
         </div>
-        <div className="p-3 bg-amber-50 rounded-full text-amber-600">
+        <div className="p-3 bg-amber-50 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400">
           <Activity className="w-6 h-6" />
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
         <div>
-          <p className="text-gray-500 text-sm font-medium mb-1">Loss Rate</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Loss Rate</p>
           <div className="flex items-baseline gap-2">
-            <p className="text-3xl font-bold text-gray-900">{lossRate}%</p>
-            <p className="text-sm text-gray-500">({lostLeads} lost)</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">{lossRate}%</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">({lostLeads} lost)</p>
           </div>
         </div>
-        <div className="p-3 bg-red-50 rounded-full text-red-600">
+        <div className="p-3 bg-red-50 dark:bg-red-900/30 rounded-full text-red-600 dark:text-red-400">
           <XCircle className="w-6 h-6" />
         </div>
       </div>

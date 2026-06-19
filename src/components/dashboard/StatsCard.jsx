@@ -19,24 +19,24 @@ const StatsCard = ({ title, value, icon, change, color }) => {
   const bgColorClass = color.replace('text-', 'bg-');
   
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col transition-colors">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-gray-500 text-sm font-medium">{title}</h3>
+        <h3 className="text-gray-500 dark:text-gray-400 text-sm font-medium">{title}</h3>
         {/* Icon wrapper with dynamic colors matching the metric's theme */}
         <div className={`p-2 rounded-md bg-opacity-10 ${bgColorClass} ${color} bg-opacity-20`}>
           {icon}
         </div>
       </div>
       <div className="flex items-baseline gap-2">
-        <span className="text-2xl font-bold text-gray-900">{value}</span>
+        <span className="text-2xl font-bold text-gray-900 dark:text-white">{value}</span>
         {/* Display positive/negative change percentage */}
-        <span className={`text-sm font-medium ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+        <span className={`text-sm font-medium ${isPositive ? 'text-green-500 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>
           {isPositive ? '+' : ''}{change}%
         </span>
       </div>
-      <p className="text-xs text-gray-400 mt-1">vs last month</p>
+      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">vs last month</p>
     </div>
   );
 };
 
-export default StatsCard;
+export default React.memo(StatsCard);

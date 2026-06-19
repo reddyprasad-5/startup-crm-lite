@@ -1,72 +1,71 @@
+const NAMES = [
+  'Aarav Patel', 'Priya Sharma', 'Rohan Gupta', 'Anjali Desai', 'Vikram Singh',
+  'Neha Verma', 'Arjun Mehta', 'Kavya Reddy', 'Dev Malhotra', 'Isha Nair',
+  'Rahul Joshi', 'Sneha Iyer', 'Karan Chopra', 'Meera Krishnan', 'Aditya Rao',
+  'Pooja Banerjee', 'Sanjay Pillai', 'Divya Menon', 'Nikhil Das', 'Ritu Agarwal',
+];
+
+const COMPANIES = [
+  'Fintech Solutions India', 'CloudWorks Tech', 'NextGen Retail', 'Healthcare Innovations',
+  'BuildTech Infrastructure', 'EduSmart Platforms', 'GreenEnergy Labs', 'DataPulse AI',
+  'SwiftLogistics', 'NovaMart', 'Zenith Consulting', 'PixelCraft Studios',
+  'AgriTech Bharat', 'SecureNet Systems', 'TravelEase India',
+];
+
+const STATUSES = ['New', 'Contacted', 'Meeting Scheduled', 'Proposal Sent', 'Won', 'Lost'];
+const SOURCES = ['Website', 'Referral', 'LinkedIn', 'Instagram', 'Ads', 'Cold Call', 'Email Campaign'];
+const OWNERS = ['Sarah', 'Alex', 'David', 'Priya', 'Rohan'];
+
+const STATUS_TO_STAGE = {
+  New: 0,
+  Contacted: 1,
+  'Meeting Scheduled': 2,
+  'Proposal Sent': 3,
+  Won: 4,
+  Lost: 3,
+};
+
+const addDays = (date, days) => {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d.toISOString();
+};
+
+const generateLead = (index) => {
+  const now = Date.now();
+  const daysAgo = Math.floor(Math.random() * 180);
+  const createdAt = new Date(now - daysAgo * 86400000);
+  createdAt.setHours(9 + (index % 8), (index * 7) % 60, 0, 0);
+
+  const status = STATUSES[Math.floor(Math.random() * STATUSES.length)];
+  const stage = STATUS_TO_STAGE[status];
+  const baseValue = [15000, 25000, 35000, 50000, 75000, 100000, 120000, 180000];
+  const value = baseValue[Math.floor(Math.random() * baseValue.length)];
+
+  const lead = {
+    id: `lead-${String(index + 1).padStart(3, '0')}`,
+    name: NAMES[index % NAMES.length],
+    company: COMPANIES[index % COMPANIES.length],
+    email: `contact${index + 1}@example.com`,
+    phone: `+91 ${90000 + index} ${10000 + index}`,
+    status,
+    source: SOURCES[Math.floor(Math.random() * SOURCES.length)],
+    value,
+    owner: OWNERS[Math.floor(Math.random() * OWNERS.length)],
+    createdAt: createdAt.toISOString(),
+    dateAdded: createdAt.toISOString(),
+  };
+
+  if (stage >= 1) lead.contactedAt = addDays(createdAt, 1 + (index % 3));
+  if (stage >= 2) lead.meetingAt = addDays(createdAt, 3 + (index % 5));
+  if (stage >= 3) lead.proposalAt = addDays(createdAt, 7 + (index % 7));
+  if (status === 'Won') lead.wonAt = addDays(createdAt, 12 + (index % 14));
+
+  return lead;
+};
+
 /**
  * Sample leads data to populate the CRM if no local storage data exists.
- * Features realistic Indian names, companies, and varied pipeline statuses.
+ * Includes analytics fields: value, owner, pipeline timestamps.
  */
-export const sampleLeads = [
-  {
-    id: 'lead-001',
-    name: 'Aarav Patel',
-    company: 'Fintech Solutions India',
-    email: 'aarav.p@fintechsolutions.in',
-    phone: '+91 98765 43210',
-    status: 'New',
-    source: 'Website',
-    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 5).toISOString(),
-  },
-  {
-    id: 'lead-002',
-    name: 'Priya Sharma',
-    company: 'CloudWorks Tech',
-    email: 'priya.sharma@cloudworks.com',
-    phone: '+91 87654 32109',
-    status: 'New',
-    source: 'LinkedIn',
-    createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 3).toISOString(),
-  },
-  {
-    id: 'lead-003',
-    name: 'Rohan Gupta',
-    company: 'NextGen Retail',
-    email: 'rohan.g@nextgenretail.in',
-    phone: '+91 76543 21098',
-    status: 'Contacted',
-    source: 'Cold Call',
-    createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 10).toISOString(),
-  },
-  {
-    id: 'lead-004',
-    name: 'Anjali Desai',
-    company: 'Healthcare Innovations',
-    email: 'anjali.d@healthinnovate.co.in',
-    phone: '+91 65432 10987',
-    status: 'Meeting Scheduled',
-    source: 'Referral',
-    createdAt: new Date(Date.now() - 86400000 * 7).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 7).toISOString(),
-  },
-  {
-    id: 'lead-005',
-    name: 'Vikram Singh',
-    company: 'BuildTech Infrastructure',
-    email: 'vikram.s@buildtech.com',
-    phone: '+91 54321 09876',
-    status: 'Won',
-    source: 'Email Campaign',
-    createdAt: new Date(Date.now() - 86400000 * 20).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 20).toISOString(),
-  },
-  {
-    id: 'lead-006',
-    name: 'Neha Verma',
-    company: 'EduSmart Platforms',
-    email: 'neha.v@edusmart.in',
-    phone: '+91 43210 98765',
-    status: 'Lost',
-    source: 'Other',
-    createdAt: new Date(Date.now() - 86400000 * 15).toISOString(),
-    dateAdded: new Date(Date.now() - 86400000 * 15).toISOString(),
-  }
-];
+export const sampleLeads = Array.from({ length: 100 }, (_, i) => generateLead(i));

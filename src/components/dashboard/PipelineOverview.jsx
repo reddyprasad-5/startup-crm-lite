@@ -21,8 +21,8 @@ const PipelineOverview = ({ leads }) => {
   const getPercentage = (count) => ((count / total) * 100).toFixed(1);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Pipeline Overview</h3>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Pipeline Overview</h3>
       
       {/* Visual horizontal bar with segments proportional to status counts */}
       <div className="h-4 w-full flex rounded-full overflow-hidden mb-4">
@@ -44,19 +44,19 @@ const PipelineOverview = ({ leads }) => {
       <div className="flex flex-wrap gap-4 text-sm">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-          <span className="text-gray-600">New ({statusCounts['New'] || 0})</span>
+          <span className="text-gray-600 dark:text-gray-300">New ({statusCounts['New'] || 0})</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-          <span className="text-gray-600">Contacted ({statusCounts['Contacted'] || 0})</span>
+          <span className="text-gray-600 dark:text-gray-300">Contacted ({statusCounts['Contacted'] || 0})</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-green-500"></span>
-          <span className="text-gray-600">Qualified ({statusCounts['Qualified'] || 0})</span>
+          <span className="text-gray-600 dark:text-gray-300">Qualified ({statusCounts['Qualified'] || 0})</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-red-500"></span>
-          <span className="text-gray-600">Lost ({statusCounts['Lost'] || 0})</span>
+          <span className="text-gray-600 dark:text-gray-300">Lost ({statusCounts['Lost'] || 0})</span>
         </div>
       </div>
     </div>

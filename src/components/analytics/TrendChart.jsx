@@ -41,15 +41,15 @@ const TrendChart = ({ leads }) => {
 
   if (data.length === 0) {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-center h-80">
-        <p className="text-gray-500">Not enough data to display Trend Chart.</p>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-center h-80 transition-colors">
+        <p className="text-gray-500 dark:text-gray-400">Not enough data to display Trend Chart.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 h-80 flex flex-col">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Lead Generation Trend</h3>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 h-80 flex flex-col transition-colors">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Lead Generation Trend</h3>
       <div className="flex-1 w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
